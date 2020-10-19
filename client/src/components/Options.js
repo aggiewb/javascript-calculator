@@ -7,6 +7,8 @@ function Options(props){
             let callback;
             if(key === 'clear'){
                 callback = props.clear;
+            } else if(key === 'decimal'){
+                callback = props.concatDecimal;
             }
             return <button key={key} id={key} onClick={callback}>{sign}</button>;
         })}
