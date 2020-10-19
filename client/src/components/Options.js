@@ -4,7 +4,11 @@ function Options(props){
     return <div id="options">
         {Object.entries(props.options).map(option => {
             const [key, sign] = option;
-            return <button key={key} id={key}>{sign}</button>;
+            let callback;
+            if(key === 'clear'){
+                callback = props.clear;
+            }
+            return <button key={key} id={key} onClick={callback}>{sign}</button>;
         })}
     </div>;
 }
