@@ -22,6 +22,7 @@ class App extends React.Component {
       <h1>JavaScript Calculator</h1>
       <p>Powered by React</p>
       <section id="calculator">
+        <input id="display" disabled></input>
         <Numbers engNums={this.englishNumbers} />
         <Operators operators={this.operators}/>
         <button id="equals">=</button>
