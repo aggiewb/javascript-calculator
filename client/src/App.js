@@ -9,12 +9,13 @@ import Footer from './components/Footer.js';
 class App extends React.Component {
   constructor(){
     super();
-    this.state ={
-      currentNum: 0,
+    this.state = {
+      operation: '0',
       total: 0,
-      operation: ''
+      hasTotal: false
     }
     this.clear = this.clear.bind(this);
+    this.concatOperation = this.concatOperation.bind(this);
   }
 
   englishNumbers = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
@@ -30,11 +31,17 @@ class App extends React.Component {
     equals: "="
   };
 
+  concatOperation(event){
+    const input = event.target.textContent;
+    const operation = this.state.operation === "0" ? input : this.state.operation + input;
+    this.setState({operation});
+  }
+
   clear(){
     this.setState({
-      currentNum: 0,
+      operation: '0',
       total: 0,
-      operator: ''
+      hasTotal: false
     });
   }
 
@@ -42,11 +49,11 @@ class App extends React.Component {
     return <div>
       <h1>JavaScript Calculator</h1>
       <p>Powered by React</p>
-      <Display currentNum={this.state.currentNum} operator={this.state.operator}/>
+      <Display hasTotal={this.state.hasTotal} total={this.state.total} operation={this.state.operation}/>
       <section id="calculator">
-        <Numbers engNums={this.englishNumbers} />
+        <Numbers engNums={this.englishNumbers} concatOperation={this.concatOperation}/>
         <Options options={this.options} clear={this.clear}/>
-        <Operators operators={this.operators}/>
+        <Operators operators={this.operators} concatOperation={this.concatOperation}/>
       </section>
       <Footer />
     </div>;
