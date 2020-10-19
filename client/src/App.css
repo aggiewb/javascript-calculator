@@ -1,10 +1,10 @@
-#display {
+#input-output {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-#display input{
+#input-output input{
     width: 200px;
     box-sizing: border-box;
     font-size: 1rem;
