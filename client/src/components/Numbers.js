@@ -1,8 +1,12 @@
 import React from 'react';
 
 function Numbers(props){
-    return <div>
-        {props.engNums.map((num, i) => <button key={num} id={num}>{i}</button>)}
+    const numButtons = props.engNums.reduceRight((accumulator, num, i) => {
+        accumulator.push(<button key={num} id={num}>{i}</button>);
+        return accumulator;
+   }, []);
+    return <div id="numbers">
+        {numButtons}
     </div>;
 }
 
