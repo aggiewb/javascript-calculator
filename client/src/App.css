@@ -1,0 +1,48 @@
+#display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#display input{
+    width: 200px;
+    box-sizing: border-box;
+}
+
+#calculator {
+    display: inline-grid;
+    grid-template-columns: 150px 50px;
+}
+
+#numbers {
+    display: grid;
+    grid-template-columns: repeat(3, 50px);
+    grid-template-rows: repeat(4, 50px); 
+}
+
+#zero {
+    grid-column: 1 / 4;
+}
+
+#operators {
+    display: grid;
+    grid-template-columns: repeat(1, 50px);
+    grid-template-rows: repeat(4, 50px);
+    grid-row: 1 / 2;
+    grid-column: 2 / 3; 
+}
+
+#options {
+    display: grid;
+    grid-template-columns: repeat(4, 50px);
+    grid-template-rows: 50px;
+    grid-column: 1 / 3;
+}
+
+#equals {
+    grid-column: 3 / 5; 
+}
+
+footer {
+    margin-top: 20px;
+}
