@@ -16,6 +16,7 @@ class App extends React.Component {
     }
     this.clear = this.clear.bind(this);
     this.concatOperation = this.concatOperation.bind(this);
+    this.concatDecimal = this.concatDecimal.bind(this);
   }
 
   englishNumbers = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
@@ -36,6 +37,16 @@ class App extends React.Component {
     const operation = this.state.operation === "0" ? input : this.state.operation + input;
     this.setState({operation});
   }
+  
+  //TODO: If current number contains a decimal, do not add others.
+  concatDecimal(){
+    const lastInput = this.state.operation[this.state.operation.length - 1];
+    const regex = new RegExp('[.+/x-]');
+    if(!lastInput.match(regex)){
+      const operation = this.state.operation + '.';
+      this.setState({operation});
+    }
+  }
 
   clear(){
     this.setState({
@@ -52,7 +63,7 @@ class App extends React.Component {
       <Display hasTotal={this.state.hasTotal} total={this.state.total} operation={this.state.operation}/>
       <section id="calculator">
         <Numbers engNums={this.englishNumbers} concatOperation={this.concatOperation}/>
-        <Options options={this.options} clear={this.clear}/>
+        <Options options={this.options} clear={this.clear} concatDecimal={this.concatDecimal}/>
         <Operators operators={this.operators} concatOperation={this.concatOperation}/>
       </section>
       <Footer />
