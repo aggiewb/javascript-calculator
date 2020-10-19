@@ -7,6 +7,12 @@
 #display input{
     width: 200px;
     box-sizing: border-box;
+    font-size: 1rem;
+    text-align: right;
+}
+
+button {
+    font-size: 1rem;
 }
 
 #calculator {

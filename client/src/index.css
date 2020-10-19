@@ -1,6 +1,10 @@
+html {
+    font-size: 18px;
+}
+
 body {
     display: flex;
     justify-content: center;
-    margin: 40px 50px;
+    margin: 15px 50px;
     text-align: center;
 }
