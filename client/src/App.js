@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import Numbers from './components/Numbers.js';
 import Operators from './components/Operators.js';
+import Options from './components/Options.js'
 import Footer from './components/Footer.js';
 
 class App extends React.Component {
@@ -12,9 +13,14 @@ class App extends React.Component {
     this.operators = {
       add: "+",
       subtract: "-",
-      multiply: "*",
+      multiply: "x",
       divide: "/"
     };
+    this.options = {
+      equals: "=",
+      decimal: ".",
+      clear: "AC"
+    }
   }
 
   render(){
@@ -25,7 +31,7 @@ class App extends React.Component {
         <input id="display" disabled></input>
         <Numbers engNums={this.englishNumbers} />
         <Operators operators={this.operators}/>
-        <button id="equals">=</button>
+        <Options options={this.options}/>
       </section>
       <Footer />
     </div>;
