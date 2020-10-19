@@ -11,21 +11,31 @@ class App extends React.Component {
     super();
     this.state ={
       currentNum: 0,
+      total: 0,
+      operation: ''
+    }
+    this.clear = this.clear.bind(this);
+  }
+
+  englishNumbers = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
+  operators = {
+    add: "+",
+    subtract: "-",
+    multiply: "x",
+    divide: "/"
+  };
+  options = {
+    clear: "AC",
+    decimal: ".",
+    equals: "="
+  };
+
+  clear(){
+    this.setState({
+      currentNum: 0,
+      total: 0,
       operator: ''
-    }
-    this.englishNumbers = ["zero", "one", "two", "three", "four", 
-                          "five", "six", "seven", "eight", "nine"];
-    this.operators = {
-      add: "+",
-      subtract: "-",
-      multiply: "x",
-      divide: "/"
-    };
-    this.options = {
-      clear: "AC",
-      decimal: ".",
-      equals: "="
-    }
+    });
   }
 
   render(){
@@ -35,7 +45,7 @@ class App extends React.Component {
       <Display currentNum={this.state.currentNum} operator={this.state.operator}/>
       <section id="calculator">
         <Numbers engNums={this.englishNumbers} />
-        <Options options={this.options}/>
+        <Options options={this.options} clear={this.clear}/>
         <Operators operators={this.operators}/>
       </section>
       <Footer />
