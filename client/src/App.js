@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
-import Numbers from './components/Numbers.js'
+import Numbers from './components/Numbers.js';
+import Operators from './components/Operators.js';
 import Footer from './components/Footer.js';
 
 class App extends React.Component {
@@ -8,6 +9,12 @@ class App extends React.Component {
     super();
     this.englishNumbers = ["zero", "one", "two", "three", "four", 
                           "five", "six", "seven", "eight", "nine"];
+    this.operators = {
+      add: "+",
+      subtract: "-",
+      multiply: "*",
+      divide: "/"
+    };
   }
 
   render(){
@@ -16,6 +23,8 @@ class App extends React.Component {
       <p>Powered by React</p>
       <section id="calculator">
         <Numbers engNums={this.englishNumbers} />
+        <Operators operators={this.operators}/>
+        <button id="equals">=</button>
       </section>
       <Footer />
     </div>;
