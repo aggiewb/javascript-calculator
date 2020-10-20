@@ -61,7 +61,7 @@ class App extends React.Component {
   computeOperation(){
     const regex = new RegExp('[+/x-]', 'g');
     const numStrArr = this.state.operation.split(regex);
-    const numArr = numStrArr.map(num => parseInt(num));
+    const numArr = numStrArr.map(num => parseFloat(num));
     const operatorsArr = this.state.operation.match(regex);
     let result = numArr[0];
     const operations = {
