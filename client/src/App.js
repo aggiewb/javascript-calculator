@@ -40,9 +40,19 @@ class App extends React.Component {
   
   //TODO: If current number contains a decimal, do not add others.
   concatDecimal(){
-    const lastInput = this.state.operation[this.state.operation.length - 1];
-    const regex = new RegExp('[.+/x-]');
-    if(!lastInput.match(regex)){
+    const lastOperationIndex = this.state.operation.length - 1;
+    const regex = new RegExp('[+/x-]');
+    let lastNumString;
+    for(let i = lastOperationIndex; i >= 0; i--){
+      if(this.state.operation[i].match(regex)){
+        lastNumString = this.state.operation.substring(i + 1);
+        break;
+      } else if(i === 0){
+        lastNumString = this.state.operation.substring(0);
+      }
+    }
+    const lastInput = this.state.operation[lastOperationIndex];
+    if(!lastInput.match(regex) && !lastNumString.match(/\./)){
       const operation = this.state.operation + '.';
       this.setState({operation});
     }
