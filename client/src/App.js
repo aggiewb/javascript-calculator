@@ -38,7 +38,6 @@ class App extends React.Component {
     this.setState({operation});
   }
   
-  //TODO: If current number contains a decimal, do not add others.
   concatDecimal(){
     const lastOperationIndex = this.state.operation.length - 1;
     const regex = new RegExp('[+/x-]');
