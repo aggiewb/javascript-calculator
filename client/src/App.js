@@ -11,12 +11,13 @@ class App extends React.Component {
     super();
     this.state = {
       operation: '0',
-      total: 0,
-      hasTotal: false
+      result: 0,
+      hasResult: false
     }
     this.clear = this.clear.bind(this);
     this.concatOperation = this.concatOperation.bind(this);
     this.concatDecimal = this.concatDecimal.bind(this);
+    this.computeOperation = this.computeOperation.bind(this);
   }
 
   englishNumbers = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
@@ -57,11 +58,29 @@ class App extends React.Component {
     }
   }
 
+  computeOperation(){
+    const regex = new RegExp('[+/x-]', 'g');
+    const numStrArr = this.state.operation.split(regex);
+    const numArr = numStrArr.map(num => parseInt(num));
+    const operatorsArr = this.state.operation.match(regex);
+    let result = numArr[0];
+    const operations = {
+      "+": (num) => result + num,
+      "-": (num) => result - num,
+      "x": (num) => result * num,
+      "/": (num) => result / num,
+    }
+    for(let i = 1; i < numStrArr.length; i++){
+      result = operations[operatorsArr[i - 1]](numArr[i]);
+    }
+    this.setState({result, hasResult: true});
+  }
+
   clear(){
     this.setState({
       operation: '0',
-      total: 0,
-      hasTotal: false
+      result: 0,
+      hasResult: false
     });
   }
 
@@ -69,10 +88,10 @@ class App extends React.Component {
     return <div>
       <h1>JavaScript Calculator</h1>
       <p>Powered by React</p>
-      <Display hasTotal={this.state.hasTotal} total={this.state.total} operation={this.state.operation}/>
+      <Display hasResult={this.state.hasResult} result={this.state.result} operation={this.state.operation}/>
       <section id="calculator">
         <Numbers engNums={this.englishNumbers} concatOperation={this.concatOperation}/>
-        <Options options={this.options} clear={this.clear} concatDecimal={this.concatDecimal}/>
+        <Options options={this.options} clear={this.clear} concatDecimal={this.concatDecimal} equals={this.computeOperation}/>
         <Operators operators={this.operators} concatOperation={this.concatOperation}/>
       </section>
       <Footer />
