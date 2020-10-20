@@ -5,19 +5,31 @@
 }
 
 #input-output input{
-    width: 200px;
     box-sizing: border-box;
-    font-size: 1rem;
+    width: 210px;
+    padding: 5px;
+    font-size: 1.5rem;
     text-align: right;
+    border: 6px double #1e248e;
+    font-family: 'Inconsolata', monospace;
 }
 
 button {
-    font-size: 1rem;
+    font-size: 1.15rem;
+    color: #9cf4e6;
+    background-color: #1e248e;
+    cursor: pointer;
+}
+
+button:active {
+    background-color: #9cf4e6;
+    color: #1e248e;
 }
 
 #calculator {
     display: inline-grid;
     grid-template-columns: 150px 50px;
+    border: 5px solid #1e248e;
 }
 
 #numbers {
@@ -51,4 +63,8 @@ button {
 
 footer {
     margin-top: 20px;
+}
+
+footer a {
+    color: #1e248e;
 }

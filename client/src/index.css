@@ -7,4 +7,7 @@ body {
     justify-content: center;
     margin: 15px 50px;
     text-align: center;
+    color: #1e248e;
+    background-color: #9cf4e6;
+    font-family: 'Montserrat', sans-serif;
 }
