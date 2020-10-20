@@ -1,4 +1,3 @@
-//TODO: Be able to display operation after result is computed
 //TODO: If 2 or more operators are entered consecutively, 
 //the operation performed should be the last operator entered (excluding the negative (-) sign.
 import React from 'react';
@@ -37,6 +36,7 @@ class App extends React.Component {
   };
 
   concatOperation(event){
+    this.setState({hasResult: false});
     const input = event.target.textContent;
     const operation = this.state.operation === "0" ? input : this.state.operation + input;
     this.setState({operation});
@@ -76,7 +76,7 @@ class App extends React.Component {
     for(let i = 1; i < numStrArr.length; i++){
       result = operations[operatorsArr[i - 1]](numArr[i]);
     }
-    this.setState({result, hasResult: true});
+    this.setState({result, hasResult: true, operation: `${result}`});
   }
 
   clear(){
