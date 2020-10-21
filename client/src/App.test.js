@@ -117,3 +117,11 @@ it('calls method clear() on click of an Options component button element AC', ()
   acButton.simulate('click');
   expect(clear).toHaveBeenCalled();
 });
+
+it('calls method concatDecimal() on click of an Options component button element .', () => {
+  const concatDecimal = jest.fn();
+  const options = shallow(<Options options={EXPECTED_OPTIONS} concatDecimal={concatDecimal}/>);
+  const decimalButton = options.find('button').filter('#decimal');
+  decimalButton.simulate('click');
+  expect(concatDecimal).toHaveBeenCalled();
+});
