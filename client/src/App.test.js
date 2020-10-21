@@ -107,7 +107,7 @@ it('renders an Options component with buttons for each option', () => {
   buttons.forEach(button => optionsButtons.push(button.prop('id')));
   optionsKeys.forEach(key => {
     expect(optionsButtons).toContain(key);
-  })
+  });
 });
 
 it('calls method clear() on click of an Options component button element AC', () => {
@@ -132,4 +132,17 @@ it('calls method equals() on click of an Options component button element =', ()
   const equalsButton = options.find('button').filter('#equals');
   equalsButton.simulate('click');
   expect(equals).toHaveBeenCalled();
+});
+
+it('renders an Operators component with buttons for each operator +, -, /, and x', () => {
+  const operatorsKeys = Object.keys(EXPECTED_OPERATORS);
+  const operators = shallow(<Operators operators={EXPECTED_OPERATORS}/>);
+  const buttons = operators.find('button');
+  expect(buttons).toHaveLength(operatorsKeys.length);
+
+  const operatorsButtons = [];
+  buttons.forEach(button => operatorsButtons.push(button.prop('id')));
+  operatorsKeys.forEach(key => {
+    expect(operatorsButtons).toContain(key);
+  });
 });
