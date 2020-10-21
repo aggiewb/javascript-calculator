@@ -67,10 +67,11 @@ class App extends React.Component {
   }
 
   computeOperation(){
-    const regex = new RegExp('[+/x-]', 'g');
+    const regex = new RegExp('[+/x-]+', 'g');
     const numStrArr = this.state.operation.split(regex);
     const numArr = numStrArr.map(num => parseFloat(num));
     const operatorsArr = this.state.operation.match(regex);
+    
     let result = numArr[0];
     const operations = {
       "+": (num) => result + num,
@@ -79,7 +80,18 @@ class App extends React.Component {
       "/": (num) => result / num,
     };
     for(let i = 1; i < numStrArr.length; i++){
-      result = operations[operatorsArr[i - 1]](numArr[i]);
+      let operator = operatorsArr[i - 1];
+      let num = numArr[i];
+      if(operator.length > 1){
+        let operatorLength = operator.length;
+        if(operator[operatorLength - 1] === '-'){
+          num *= -1;
+          operator = operator[operatorLength - 2];
+        } else {
+          operator = operator[operatorLength - 1]
+        }
+      }
+      result = operations[operator](num);
     }
     this.setState({result, hasResult: true, operation: `${result}`});
   }
