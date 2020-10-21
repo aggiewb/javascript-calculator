@@ -5,7 +5,6 @@ import Display from './components/Display.js';
 import Numbers from './components/Numbers.js';
 import Operators from './components/Operators.js';
 import Options from './components/Options.js'
-import Footer from './components/Footer.js';
 
 //https://jestjs.io/docs/en/expect
 //shallow: https://enzymejs.github.io/enzyme/docs/api/shallow.html
@@ -96,4 +95,17 @@ it('calls method concatOperation() on click of a Numbers component button elemen
   const oneButton = numbers.find('button').filter(`#${EXPECTED_ENGLISH_NUMBERS[1]}`);
   oneButton.simulate('click');
   expect(concatOperation).toHaveBeenCalled();
+});
+
+it('renders a Options component with buttons for each option', () => {
+  const optionsKeys = Object.keys(EXPECTED_OPTIONS);
+  const options = shallow(<Options options={EXPECTED_OPTIONS}/>);
+  const buttons = options.find('button');
+  expect(buttons).toHaveLength(optionsKeys.length);
+
+  const optionsButtons = [];
+  buttons.forEach(button => optionsButtons.push(button.prop('id')));
+  optionsKeys.forEach(key => {
+    expect(optionsButtons).toContain(key);
+  })
 });
