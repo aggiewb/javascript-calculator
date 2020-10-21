@@ -1,6 +1,11 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import App from './App';
+import Display from './components/Display.js';
+import Numbers from './components/Numbers.js';
+import Operators from './components/Operators.js';
+import Options from './components/Options.js'
+import Footer from './components/Footer.js';
 
 //https://jestjs.io/docs/en/expect
 //shallow: https://enzymejs.github.io/enzyme/docs/api/shallow.html
@@ -55,4 +60,14 @@ it('renders App class child components, and initializes their props', () => {
 
   const footer = app.find('Footer');
   expect(footer.exists()).toEqual(true);
+});
+
+it('renders a Display component with a result set', () => {
+  const EXPECTED_SET_RESULT = {
+    result: 1,
+    hasResult: true
+  };
+  const display = shallow(<Display hasResult={EXPECTED_SET_RESULT.hasResult} result={EXPECTED_SET_RESULT.result}/>);
+  const input = display.find('input');
+  expect(input.prop('value')).toEqual(EXPECTED_SET_RESULT.result);
 });
