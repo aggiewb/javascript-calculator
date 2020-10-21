@@ -1,5 +1,3 @@
-//TODO: If 2 or more operators are entered consecutively, 
-//the operation performed should be the last operator entered (excluding the negative (-) sign.
 import React from 'react';
 import './App.css';
 import Display from './components/Display.js';
