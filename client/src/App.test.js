@@ -154,3 +154,48 @@ it('calls method concatOperation() on click of an Operators component button ele
   addButton.simulate('click');
   expect(concatOperation).toHaveBeenCalled();
 });
+
+it('calls App class concatOperation() method passing in an event object with a textContent of an operator on initial state', () => {
+  const app = shallow(<App />);
+  app.setState({...EXPECTED_INITIAL_STATE});
+  const event = {
+    target: {
+      textContent: EXPECTED_OPERATORS['add']
+    }
+  };
+  app.instance().concatOperation(event);
+  const display = app.find('Display');
+  expect(display.prop('hasResult')).toEqual(EXPECTED_INITIAL_STATE.hasResult);
+  expect(display.prop('operation')).toEqual(EXPECTED_INITIAL_STATE.operation);
+});
+
+it('calls App class concatOperation() method passing in an event object with a textContent of a number on initial state', () => {
+  const app = shallow(<App />);
+  const EXPECTED_OPERATION = '1';
+  app.setState({...EXPECTED_INITIAL_STATE});
+  const event = {
+    target: {
+      textContent: EXPECTED_OPERATION
+    }
+  };
+  app.instance().concatOperation(event);
+  const display = app.find('Display');
+  expect(display.prop('hasResult')).toEqual(EXPECTED_INITIAL_STATE.hasResult);
+  expect(display.prop('operation')).toEqual(EXPECTED_OPERATION);
+});
+
+it('calls App class concatOperation() method passing in an event object a textContent of a number with an operation has previous state set', () => {
+  const app = shallow(<App />);
+  const INITIAL_OPERATION = '1+';
+  const EXPECTED_OPERATION = '2';
+  app.setState({...EXPECTED_INITIAL_STATE, operation: INITIAL_OPERATION});
+  const event = {
+    target: {
+      textContent: EXPECTED_OPERATION
+    }
+  };
+  app.instance().concatOperation(event);
+  const display = app.find('Display');
+  expect(display.prop('hasResult')).toEqual(EXPECTED_INITIAL_STATE.hasResult);
+  expect(display.prop('operation')).toEqual(INITIAL_OPERATION + EXPECTED_OPERATION);
+});
