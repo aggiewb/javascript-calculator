@@ -78,7 +78,7 @@ it('renders a Display component with a result not set', () => {
   expect(input.prop('value')).toEqual(EXPECTED_INITIAL_STATE.operation);
 });
 
-it('render a Numbers component with buttons for each number 0-9', () => {
+it('renders a Numbers component with buttons for each number 0-9', () => {
   const numbers = shallow(<Numbers engNums={EXPECTED_ENGLISH_NUMBERS}/>);
   const buttons = numbers.find('button');
   expect(buttons).toHaveLength(EXPECTED_ENGLISH_NUMBERS.length);
@@ -88,4 +88,12 @@ it('render a Numbers component with buttons for each number 0-9', () => {
   EXPECTED_ENGLISH_NUMBERS.forEach(number => {
     expect(numButtons).toContain(number);
   });
+});
+
+it('calls method concatOperation() on click of a Numbers component button element', () => {
+  const concatOperation = jest.fn();
+  const numbers = shallow(<Numbers engNums={EXPECTED_ENGLISH_NUMBERS} concatOperation={concatOperation}/>);
+  const oneButton = numbers.find('button').filter(`#${EXPECTED_ENGLISH_NUMBERS[1]}`);
+  oneButton.simulate('click');
+  expect(concatOperation).toHaveBeenCalled();
 });
