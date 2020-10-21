@@ -146,3 +146,11 @@ it('renders an Operators component with buttons for each operator +, -, /, and x
     expect(operatorsButtons).toContain(key);
   });
 });
+
+it('calls method concatOperation() on click of an Operators component button element', () => {
+  const concatOperation = jest.fn();
+  const operators = shallow(<Operators operators={EXPECTED_OPERATORS} concatOperation={concatOperation}/>);
+  const addButton = operators.find('button').filter('#add');
+  addButton.simulate('click');
+  expect(concatOperation).toHaveBeenCalled();
+});
