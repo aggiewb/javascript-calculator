@@ -77,3 +77,15 @@ it('renders a Display component with a result not set', () => {
   const input = display.find('input');
   expect(input.prop('value')).toEqual(EXPECTED_INITIAL_STATE.operation);
 });
+
+it('render a Numbers component with buttons for each number 0-9', () => {
+  const numbers = shallow(<Numbers engNums={EXPECTED_ENGLISH_NUMBERS}/>);
+  const buttons = numbers.find('button');
+  expect(buttons).toHaveLength(EXPECTED_ENGLISH_NUMBERS.length);
+
+  const numButtons = [];
+  buttons.forEach(button => numButtons.push(button.prop('id')));
+  EXPECTED_ENGLISH_NUMBERS.forEach(number => {
+    expect(numButtons).toContain(number);
+  });
+});
