@@ -23,17 +23,17 @@ const EXPECTED_OPERATORS = {
   multiply: "x",
   divide: "/"
 };
+const EXPECTED_INITIAL_STATE = {
+  operation: '0',
+  result: 0,
+  hasResult: false
+};
 
 it('App deeply renders as a smoke test', () => {
   mount(<App />);
 });
 
 it('renders App class child components, and initializes their props', () => {
-  const EXPECTED_INITIAL_STATE = {
-    operation: '0',
-    result: 0,
-    hasResult: false
-  };
   const app = shallow(<App />);
   const display = app.find('Display');
   expect(display.exists()).toEqual(true);
@@ -70,4 +70,10 @@ it('renders a Display component with a result set', () => {
   const display = shallow(<Display hasResult={EXPECTED_SET_RESULT.hasResult} result={EXPECTED_SET_RESULT.result}/>);
   const input = display.find('input');
   expect(input.prop('value')).toEqual(EXPECTED_SET_RESULT.result);
+});
+
+it('renders a Display component with a result not set', () => {
+  const display = shallow(<Display hasResult={EXPECTED_INITIAL_STATE.hasResult} operation={EXPECTED_INITIAL_STATE.operation}/>);
+  const input = display.find('input');
+  expect(input.prop('value')).toEqual(EXPECTED_INITIAL_STATE.operation);
 });
