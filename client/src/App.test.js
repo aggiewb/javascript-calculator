@@ -97,7 +97,7 @@ it('calls method concatOperation() on click of a Numbers component button elemen
   expect(concatOperation).toHaveBeenCalled();
 });
 
-it('renders a Options component with buttons for each option', () => {
+it('renders an Options component with buttons for each option', () => {
   const optionsKeys = Object.keys(EXPECTED_OPTIONS);
   const options = shallow(<Options options={EXPECTED_OPTIONS}/>);
   const buttons = options.find('button');
@@ -108,4 +108,12 @@ it('renders a Options component with buttons for each option', () => {
   optionsKeys.forEach(key => {
     expect(optionsButtons).toContain(key);
   })
+});
+
+it('calls method clear() on click of an Options component button element AC', () => {
+  const clear = jest.fn();
+  const options = shallow(<Options options={EXPECTED_OPTIONS} clear={clear}/>);
+  const acButton = options.find('button').filter('#clear');
+  acButton.simulate('click');
+  expect(clear).toHaveBeenCalled();
 });
