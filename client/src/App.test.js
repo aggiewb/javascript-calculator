@@ -125,3 +125,11 @@ it('calls method concatDecimal() on click of an Options component button element
   decimalButton.simulate('click');
   expect(concatDecimal).toHaveBeenCalled();
 });
+
+it('calls method equals() on click of an Options component button element =', () => {
+  const equals = jest.fn();
+  const options = shallow(<Options options={EXPECTED_OPTIONS} equals={equals}/>);
+  const equalsButton = options.find('button').filter('#equals');
+  equalsButton.simulate('click');
+  expect(equals).toHaveBeenCalled();
+});
