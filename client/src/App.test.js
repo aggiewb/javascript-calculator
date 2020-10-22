@@ -188,7 +188,7 @@ it('calls App class concatOperation() method passing in an event object a textCo
   const app = shallow(<App />);
   const INITIAL_OPERATION = '1+';
   const EXPECTED_OPERATION = '2';
-  app.setState({...EXPECTED_INITIAL_STATE, operation: INITIAL_OPERATION});
+  app.setState({operation: INITIAL_OPERATION});
   const event = {
     target: {
       textContent: EXPECTED_OPERATION
@@ -212,7 +212,7 @@ it('calls App class method concatDecimal() with inital operation state value whi
 it('calls App class method concatDecimal() with operation state value ending in an operator which sets display operation property to initial operation', () => {
   const app = shallow(<App />);
   const INITIAL_OPERATION = '1+'
-  app.setState({...EXPECTED_INITIAL_STATE, operation: INITIAL_OPERATION});
+  app.setState({operation: INITIAL_OPERATION});
   app.instance().concatDecimal();
   const display = app.find('Display');
   expect(display.prop('operation')).toEqual(INITIAL_OPERATION);
@@ -221,7 +221,7 @@ it('calls App class method concatDecimal() with operation state value ending in 
 it('calls App class method concatDecimal() with operation state value ending in a number that contains a decimal which sets display operation property to initial operation', () => {
   const app = shallow(<App />);
   const INITIAL_OPERATION = '1.'
-  app.setState({...EXPECTED_INITIAL_STATE, operation: INITIAL_OPERATION});
+  app.setState({operation: INITIAL_OPERATION});
   app.instance().concatDecimal();
   const display = app.find('Display');
   expect(display.prop('operation')).toEqual(INITIAL_OPERATION);
@@ -239,7 +239,7 @@ it('calls App class method computeOperation() with an operation that contains ea
   const app = shallow(<App />);
   const INITIAL_OPERATION = '5+4-3x2/1';
   const EXPECTED_RESULT = 12;
-  app.setState({...EXPECTED_INITIAL_STATE, operation: INITIAL_OPERATION});
+  app.setState({operation: INITIAL_OPERATION});
   app.instance().computeOperation();
   const display = app.find('Display');
   expect(display.prop('result')).toEqual(EXPECTED_RESULT);
@@ -249,7 +249,7 @@ it('calls App class method computeOperation() with an operation that contains co
   const app = shallow(<App />);
   const INITIAL_OPERATION = '2/+-1';
   const EXPECTED_RESULT = 1;
-  app.setState({...EXPECTED_INITIAL_STATE, operation: INITIAL_OPERATION});
+  app.setState({operation: INITIAL_OPERATION});
   app.instance().computeOperation();
   const display = app.find('Display');
   expect(display.prop('result')).toEqual(EXPECTED_RESULT);
@@ -259,7 +259,7 @@ it('calls App class method computeOperation() with an operation that contains co
   const app = shallow(<App />);
   const INITIAL_OPERATION = '2/-+1';
   const EXPECTED_RESULT = 3;
-  app.setState({...EXPECTED_INITIAL_STATE, operation: INITIAL_OPERATION});
+  app.setState({operation: INITIAL_OPERATION});
   app.instance().computeOperation();
   const display = app.find('Display');
   expect(display.prop('result')).toEqual(EXPECTED_RESULT);
