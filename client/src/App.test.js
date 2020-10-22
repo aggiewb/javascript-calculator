@@ -155,7 +155,7 @@ it('calls method concatOperation() on click of an Operators component button ele
   expect(concatOperation).toHaveBeenCalled();
 });
 
-it('calls App class concatOperation() method passing in an event object with a textContent of an operator on initial state', () => {
+it('calls App class concatOperation() method passing in an event object with a textContent of an operator on initial state which sets display operation and hasResult properties to the initial state', () => {
   const app = shallow(<App />);
   app.setState({...EXPECTED_INITIAL_STATE});
   const event = {
@@ -169,7 +169,7 @@ it('calls App class concatOperation() method passing in an event object with a t
   expect(display.prop('operation')).toEqual(EXPECTED_INITIAL_STATE.operation);
 });
 
-it('calls App class concatOperation() method passing in an event object with a textContent of a number on initial state', () => {
+it('calls App class concatOperation() method passing in an event object with a textContent of a number on initial state which sets display operation property to the expected operation and hasResult to the initial state', () => {
   const app = shallow(<App />);
   const EXPECTED_OPERATION = '1';
   app.setState({...EXPECTED_INITIAL_STATE});
@@ -184,7 +184,7 @@ it('calls App class concatOperation() method passing in an event object with a t
   expect(display.prop('operation')).toEqual(EXPECTED_OPERATION);
 });
 
-it('calls App class concatOperation() method passing in an event object a textContent of a number with an operation has previous state set', () => {
+it('calls App class concatOperation() method passing in an event object a textContent of a number with an operation has previous state set which sets display operation property to the expected operation and hasResult to the initial state', () => {
   const app = shallow(<App />);
   const INITIAL_OPERATION = '1+';
   const EXPECTED_OPERATION = '2';
