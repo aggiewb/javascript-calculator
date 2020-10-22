@@ -234,6 +234,16 @@ it('calls App class method computeOperation() with inital operation state value'
   expect(display.prop('result')).toEqual(EXPECTED_INITIAL_STATE.result);
 });
 
+it('calls App class method computeOperation() with an operation that contains each operator +, -, /, and x', () => {
+  const app = shallow(<App />);
+  const INITIAL_OPERATION = '5+4-3x2/1';
+  const EXPECTED_RESULT = 12;
+  app.setState({...EXPECTED_INITIAL_STATE, operation: INITIAL_OPERATION});
+  app.instance().computeOperation();
+  const display = app.find('Display');
+  expect(display.prop('result')).toEqual(EXPECTED_RESULT);
+});
+
 it('calls App class method clear() which sets display properties to initial values', () => {
   const app = shallow(<App />);
   app.instance().clear();
