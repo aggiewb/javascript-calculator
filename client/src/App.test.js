@@ -254,6 +254,16 @@ it('calls App class method computeOperation() with an operation that contains co
   expect(display.prop('result')).toEqual(EXPECTED_RESULT);
 });
 
+it('calls App class method computeOperation() with an operation that contains consecutive operators with last operator not -', () => {
+  const app = shallow(<App />);
+  const INITIAL_OPERATION = '2/-+1';
+  const EXPECTED_RESULT = 3;
+  app.setState({...EXPECTED_INITIAL_STATE, operation: INITIAL_OPERATION});
+  app.instance().computeOperation();
+  const display = app.find('Display');
+  expect(display.prop('result')).toEqual(EXPECTED_RESULT);
+});
+
 it('calls App class method clear() which sets display properties to initial values', () => {
   const app = shallow(<App />);
   app.instance().clear();
