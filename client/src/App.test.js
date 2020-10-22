@@ -226,6 +226,14 @@ it('calls App class method concatDecimal() with operation state value ending in 
   expect(display.prop('operation')).toEqual(INITIAL_OPERATION);
 });
 
+it('calls App class method computeOperation() with inital operation state value', () => {
+  const app = shallow(<App />);
+  app.setState({...EXPECTED_INITIAL_STATE});
+  app.instance().computeOperation();
+  const display = app.find('Display');
+  expect(display.prop('result')).toEqual(EXPECTED_INITIAL_STATE.result);
+});
+
 it('calls App class method clear() which sets display properties to initial values', () => {
   const app = shallow(<App />);
   app.instance().clear();
