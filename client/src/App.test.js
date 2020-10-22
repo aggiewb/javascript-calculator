@@ -200,15 +200,16 @@ it('calls App class concatOperation() method passing in an event object a textCo
   expect(display.prop('operation')).toEqual(INITIAL_OPERATION + EXPECTED_OPERATION);
 });
 
-it('calls App class method concatDecimal() with inital operation state value', () => {
+it('calls App class method concatDecimal() with inital operation state value which sets display operation property to the expected operation', () => {
   const app = shallow(<App />);
   app.setState({...EXPECTED_INITIAL_STATE});
+  const EXPECTED_OPERATION = EXPECTED_INITIAL_STATE.operation + '.';
   app.instance().concatDecimal();
   const display = app.find('Display');
-  expect(display.prop('operation')).toEqual(EXPECTED_INITIAL_STATE.operation + '.');
+  expect(display.prop('operation')).toEqual(EXPECTED_OPERATION);
 });
 
-it('calls App class method concatDecimal() with operation state value ending in an operator', () => {
+it('calls App class method concatDecimal() with operation state value ending in an operator which sets display operation property to initial operation', () => {
   const app = shallow(<App />);
   const INITIAL_OPERATION = '1+'
   app.setState({...EXPECTED_INITIAL_STATE, operation: INITIAL_OPERATION});
@@ -217,7 +218,7 @@ it('calls App class method concatDecimal() with operation state value ending in 
   expect(display.prop('operation')).toEqual(INITIAL_OPERATION);
 });
 
-it('calls App class method concatDecimal() with operation state value ending in a number that contains a decimal', () => {
+it('calls App class method concatDecimal() with operation state value ending in a number that contains a decimal which sets display operation property to initial operation', () => {
   const app = shallow(<App />);
   const INITIAL_OPERATION = '1.'
   app.setState({...EXPECTED_INITIAL_STATE, operation: INITIAL_OPERATION});
@@ -226,7 +227,7 @@ it('calls App class method concatDecimal() with operation state value ending in 
   expect(display.prop('operation')).toEqual(INITIAL_OPERATION);
 });
 
-it('calls App class method computeOperation() with inital operation state value', () => {
+it('calls App class method computeOperation() with inital operation state value which sets display result property to initial state result value', () => {
   const app = shallow(<App />);
   app.setState({...EXPECTED_INITIAL_STATE});
   app.instance().computeOperation();
@@ -234,7 +235,7 @@ it('calls App class method computeOperation() with inital operation state value'
   expect(display.prop('result')).toEqual(EXPECTED_INITIAL_STATE.result);
 });
 
-it('calls App class method computeOperation() with an operation that contains each operator +, -, /, and x', () => {
+it('calls App class method computeOperation() with an operation that contains each operator +, -, /, and x which sets display result property to expected result', () => {
   const app = shallow(<App />);
   const INITIAL_OPERATION = '5+4-3x2/1';
   const EXPECTED_RESULT = 12;
@@ -244,7 +245,7 @@ it('calls App class method computeOperation() with an operation that contains ea
   expect(display.prop('result')).toEqual(EXPECTED_RESULT);
 });
 
-it('calls App class method computeOperation() with an operation that contains consecutive operators with last operator as -', () => {
+it('calls App class method computeOperation() with an operation that contains consecutive operators with last operator as - which sets display result property to expected result', () => {
   const app = shallow(<App />);
   const INITIAL_OPERATION = '2/+-1';
   const EXPECTED_RESULT = 1;
@@ -254,7 +255,7 @@ it('calls App class method computeOperation() with an operation that contains co
   expect(display.prop('result')).toEqual(EXPECTED_RESULT);
 });
 
-it('calls App class method computeOperation() with an operation that contains consecutive operators with last operator not -', () => {
+it('calls App class method computeOperation() with an operation that contains consecutive operators with last operator not - which sets display result property to expected result', () => {
   const app = shallow(<App />);
   const INITIAL_OPERATION = '2/-+1';
   const EXPECTED_RESULT = 3;
