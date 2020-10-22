@@ -200,6 +200,14 @@ it('calls App class concatOperation() method passing in an event object a textCo
   expect(display.prop('operation')).toEqual(INITIAL_OPERATION + EXPECTED_OPERATION);
 });
 
+it('calls App class method concatDecimal() with inital operation state value', () => {
+  const app = shallow(<App />);
+  app.setState({...EXPECTED_INITIAL_STATE});
+  app.instance().concatDecimal();
+  const display = app.find('Display');
+  expect(display.prop('operation')).toEqual(EXPECTED_INITIAL_STATE.operation + '.');
+});
+
 it('calls App class method clear() which sets display properties to initial values', () => {
   const app = shallow(<App />);
   app.instance().clear();
